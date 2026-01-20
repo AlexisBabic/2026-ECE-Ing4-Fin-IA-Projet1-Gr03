@@ -1433,3 +1433,433 @@ L'IA neuro-symbolique combine les forces des réseaux de neurones (apprentissage
 - NeuralLP ou Neural Theorem Provers pour l'intégration
 - SHAP/LIME pour connecter les explications aux règles
 
+---
+
+### 55. ACTUS : Standard algorithmique pour contrats financiers
+
+**Description du problème et contexte**
+ACTUS (Algorithmic Contract Types Unified Standards) est un standard international qui définit de manière algorithmique les flux de trésorerie de tous types de contrats financiers. Ce projet explore l'implémentation et la vérification formelle de contrats ACTUS, permettant de modéliser précisément obligations, prêts, dérivés et autres instruments financiers avec une spécification mathématiquement non-ambiguë.
+
+**Références multiples**
+- **ACTUS Foundation** : [actusfrf.org](https://www.actusfrf.org) - Standard officiel et documentation
+- **Wikipedia** : [Algorithmic Contract Types Unified Standards](https://en.wikipedia.org/wiki/Algorithmic_Contract_Types_Unified_Standards) - Vue d'ensemble
+- **ACTUS Documentation** : [documentation.actusfrf.org](https://documentation.actusfrf.org/docs/intro) - Spécifications techniques
+- **Vérification formelle** : [Towards a B-Method Framework for Smart Contract Verification: The Case of ACTUS](https://tokenizedeconomies.org/blog-posts/towards-a-b-method-framework-for-smart-contract-verification-the-case-of-actus-financial-contracts) - TEI 2024
+- **FDIC** : ACTUS utilisé dans le Rapid Phased Prototyping competition pour l'analyse des bilans bancaires
+
+**Approches suggérées**
+- Implémenter un ou plusieurs types de contrats ACTUS (PAM - Principal at Maturity, ANN - Annuity, etc.)
+- Modéliser les événements contractuels et les transitions d'état selon la spécification
+- Vérifier formellement les propriétés (conservation des flux, respect des échéances)
+- Développer un simulateur de cash-flows pour différents scénarios économiques
+
+**Technologies pertinentes**
+- Python avec la bibliothèque actus-core pour l'implémentation de référence
+- Z3 ou Coq pour la vérification formelle des propriétés
+- Pandas pour la manipulation des séries temporelles de cash-flows
+- Jupyter Notebook pour la visualisation des scénarios contractuels
+
+---
+
+### 56. Marlowe : DSL pour contrats financiers sur blockchain
+
+**Description du problème et contexte**
+Marlowe est un langage dédié (DSL) développé par IOHK pour écrire des smart contracts financiers sur la blockchain Cardano. Contrairement aux langages généralistes comme Solidity, Marlowe est spécifiquement conçu pour les contrats financiers, avec une vérification formelle intégrée garantissant des propriétés comme "l'argent entrant égale l'argent sortant".
+
+**Références multiples**
+- **Publication académique** : [Marlowe: Implementing and Analysing Financial Contracts on Blockchain](https://link.springer.com/chapter/10.1007/978-3-030-54455-3_35) - Springer 2020
+- **Cardano Developer Portal** : [Marlowe Documentation](https://developers.cardano.org/docs/smart-contracts/smart-contract-languages/marlowe/) - Guide complet
+- **Marlowe Playground** : [play.marlowe.iohk.io](https://play.marlowe.iohk.io/) - Environnement de développement en ligne
+- **IOHK Blog** : [Marlowe: industry-scale finance contracts for Cardano](https://iohk.io/blog/posts/2020/10/06/marlowe-industry-scale-finance-contracts-for-cardano/) - Présentation
+- **ACTUS sur Marlowe** : Implémentation des standards ACTUS disponible
+
+**Approches suggérées**
+- Explorer le Marlowe Playground pour créer des contrats simples (escrow, swap, options)
+- Implémenter un contrat financier complexe (coupon bond, option européenne)
+- Utiliser l'analyseur statique pour prouver les propriétés de sécurité
+- Comparer l'expressivité et la sécurité avec Solidity sur des cas équivalents
+
+**Technologies pertinentes**
+- Marlowe Playground pour le développement visuel (Blockly) ou textuel
+- Haskell pour l'intégration avec Plutus et le backend Cardano
+- Isabelle pour comprendre les preuves formelles du système
+- Simulateur Marlowe pour tester les contrats sans déploiement
+
+---
+
+### 57. Vérification formelle de protocoles AMM (Uniswap)
+
+**Description du problème et contexte**
+Les Automated Market Makers (AMM) comme Uniswap gèrent des milliards de dollars via la formule x·y=k. La vérification formelle permet de prouver mathématiquement des propriétés critiques comme la solvabilité (le protocole a toujours assez de fonds), l'absence d'overflow, et la résistance aux attaques de manipulation de prix.
+
+**Références multiples**
+- **Certora Blog** : [Proving Solvency in Uniswap v4: Formal Verification for AMM Security](https://www.certora.com/blog/proving-solvency-in-uniswaps-amm) - Méthodologie complète
+- **Uniswap Documentation** : [docs.uniswap.org](https://docs.uniswap.org/) - Architecture et smart contracts
+- **Formal Land** : [How does formal verification of smart contracts work?](https://formal.land/blog/2024/12/20/what-is-formal-verification-of-smart-contracts) - Introduction
+- **GitHub Uniswap** : [github.com/Uniswap](https://github.com/Uniswap) - Code source complet
+
+**Approches suggérées**
+- Étudier l'architecture d'un AMM simple (Uniswap v2) et identifier les invariants clés
+- Modéliser le contrat en Solidity et spécifier les propriétés en logique
+- Utiliser un solveur SMT (Z3 via SMTChecker ou Certora) pour vérifier les invariants
+- Documenter les vulnérabilités potentielles et les garanties prouvées
+
+**Technologies pertinentes**
+- Solidity pour l'écriture/lecture des smart contracts
+- Foundry ou Hardhat pour les tests et le développement
+- SMTChecker intégré à Solidity ou Certora Prover pour la vérification
+- Slither pour l'analyse statique complémentaire
+
+---
+
+### 58. Vérification d'invariants de stablecoins (MakerDAO/DAI)
+
+**Description du problème et contexte**
+MakerDAO/DAI est le premier stablecoin algorithmique décentralisé, maintenant sa parité avec le dollar via un système complexe de Collateralized Debt Positions (CDP). La vérification formelle de ce système est critique car il gère des milliards de dollars et doit garantir des invariants comme "la valeur des collatéraux dépasse toujours la dette".
+
+**Références multiples**
+- **MakerDAO Whitepaper** : [makerdao.com/whitepaper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) - Architecture du système
+- **MakerDAO Technical Docs** : [docs.makerdao.com](https://docs.makerdao.com/) - Documentation technique complète
+- **GitHub DSS** : [github.com/makerdao/dss](https://github.com/makerdao/dss) - Dai Stablecoin System (code source)
+- **Formal Verification** : MCD_VAT (core engine) entièrement vérifié formellement
+
+**Approches suggérées**
+- Étudier l'architecture MCD (Multi-Collateral DAI) et ses composants (VAT, PIT, CAT)
+- Identifier et formaliser les invariants critiques (ratio de collatéralisation, liquidation)
+- Vérifier un sous-ensemble du système avec des outils de vérification formelle
+- Analyser les mécanismes de gouvernance et leur impact sur la stabilité
+
+**Technologies pertinentes**
+- Solidity pour l'étude du code source DSS
+- K Framework ou Act pour la vérification formelle (utilisés par MakerDAO)
+- Z3 pour la vérification de propriétés arithmétiques
+- Dafny ou Coq pour une spécification formelle de haut niveau
+
+---
+
+### 59. Construction de graphes de connaissances financières avec NLP
+
+**Description du problème et contexte**
+L'extraction automatique d'entités et de relations à partir de documents financiers (rapports annuels, communiqués de presse, articles) permet de construire des graphes de connaissances reliant entreprises, dirigeants, événements et indicateurs financiers. Ces graphes alimentent ensuite des systèmes de gestion des risques et d'aide à la décision.
+
+**Références multiples**
+- **Neo4j Tutorial** : [Build a Knowledge Graph using NLP and Ontologies](https://neo4j.com/developer/graph-data-science/build-knowledge-graph-nlp-ontologies/) - Guide complet
+- **Medium** : [Transforming Financial Statements into Knowledge Graphs Using Neo4j LLM](https://kshitijkutumbe.medium.com/transforming-financial-statements-into-knowledge-graphs-using-neo4j-llm-knowledge-graph-builder-418a1379c6a8) - Application pratique
+- **Neo4j NLP** : [Entity Extraction with APOC NLP](https://neo4j.com/developer/graph-data-science/nlp/entity-extraction/) - Extraction d'entités
+- **Research** : [Enhancing supply chain visibility with knowledge graphs and large language models](https://www.tandfonline.com/doi/full/10.1080/00207543.2025.2575841) - Taylor & Francis 2025
+
+**Approches suggérées**
+- Collecter un corpus de documents financiers (SEC filings, rapports annuels)
+- Implémenter un pipeline NLP pour l'extraction d'entités nommées financières
+- Définir une ontologie des relations (owns, manages, competes_with, supplies)
+- Construire et interroger le graphe de connaissances avec des requêtes Cypher
+
+**Technologies pertinentes**
+- Python avec spaCy ou Stanza pour le NLP et NER
+- Neo4j pour le stockage et les requêtes sur graphe
+- LLMs (GPT, Claude) pour l'extraction de relations complexes
+- Streamlit ou Dash pour la visualisation interactive du graphe
+
+---
+
+### 60. Ontologie FIBO pour l'intégration de données financières
+
+**Description du problème et contexte**
+FIBO (Financial Industry Business Ontology) est l'ontologie de référence standardisée par l'OMG et l'EDM Council pour représenter les concepts financiers. Ce projet explore l'utilisation de FIBO pour intégrer des données hétérogènes (bases de données, fichiers, APIs) et permettre des requêtes sémantiques unifiées sur l'ensemble des données d'une organisation.
+
+**Références multiples**
+- **FIBO Specification** : [spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/) - Standard officiel
+- **GitHub FIBO** : [github.com/edmcouncil/fibo](https://github.com/edmcouncil/fibo) - Code source OWL
+- **GlobalFintech** : [Financial Information Business Ontology (FIBO)](https://globalfintechseries.com/featured/financial-information-business-ontology-fibo-architecture-use-cases-and-implementation-challenges/) - Architecture et cas d'usage
+- **Ontotext** : [FIBO in Context](https://www.ontotext.com/blog/fibo-in-context/) - Mise en perspective
+- **FIB-DM** : [Finance Ontology transformed into Enterprise Data Model](https://fib-dm.com/finance-ontology-transform-data-model/) - Application pratique
+
+**Approches suggérées**
+- Explorer la structure modulaire de FIBO (FBC, BE, IND, SEC, DER)
+- Sélectionner un domaine (instruments financiers, entités légales) et créer des instances
+- Implémenter des requêtes SPARQL pour extraire des informations cross-domaines
+- Utiliser un raisonneur OWL pour inférer de nouvelles connaissances
+
+**Technologies pertinentes**
+- Protégé pour l'exploration et l'édition de l'ontologie
+- Apache Jena ou RDFLib pour le traitement RDF/SPARQL
+- GraphDB ou Stardog pour le stockage et le raisonnement
+- Python pour l'intégration et l'interface utilisateur
+
+---
+
+### 61. Conformité réglementaire sémantique avec FRO
+
+**Description du problème et contexte**
+La Financial Regulation Ontology (FRO) permet d'automatiser la vérification de conformité réglementaire en modélisant les règles (MiFID, Basel, IFRS) comme des classes définies en OWL. Un raisonneur peut alors déterminer automatiquement si une entité ou transaction est conforme en classifiant les instances selon ces règles.
+
+**Références multiples**
+- **FRO** : [finregont.com](https://finregont.com/) - Semantic Compliance in Finance
+- **FRO Tutorial** : [finregont.com/tutorial](https://finregont.com/tutorial/) - Guide d'introduction
+- **Bank Ontology** : [bankontology.com](https://bankontology.com/) - Semantic Bank Compliance
+- **Fund Ontology** : [fundontology.com](https://fundontology.com/) - Semantic compliance pour fonds
+- **MIT Research** : [Evaluation of ontology for regulatory compliance](https://dspace.mit.edu/handle/1721.1/99020) - Étude académique
+
+**Approches suggérées**
+- Étudier l'architecture de FRO et son intégration avec FIBO et LKIF
+- Modéliser un sous-ensemble de règles réglementaires (ex: obligations de reporting)
+- Créer des instances de données et utiliser un raisonneur pour classifier la conformité
+- Développer une interface de requête pour les analystes conformité
+
+**Technologies pertinentes**
+- Protégé avec raisonneur HermiT ou Pellet pour l'inférence
+- SPARQL pour les requêtes de conformité
+- Python avec Owlready2 pour l'intégration programmatique
+- Interface web pour la visualisation des résultats de conformité
+
+---
+
+### 62. Graphe de connaissances LEI/GLEIF pour le risque de contrepartie
+
+**Description du problème et contexte**
+Le Legal Entity Identifier (LEI) est un identifiant unique international pour les entités légales participant aux transactions financières. Le système GLEIF expose les données LEI (Level 1: identité, Level 2: propriété) qui peuvent être transformées en graphe de connaissances pour analyser les risques de contrepartie et les expositions en cascade.
+
+**Références multiples**
+- **GLEIF** : [gleif.org](https://www.gleif.org/en) - Global LEI Foundation
+- **OFR LEI** : [financialresearch.gov/data/legal-entity-identifier](https://www.financialresearch.gov/data/legal-entity-identifier/find-lei/) - Office of Financial Research
+- **FSB** : [Legal Entity Identifier](https://www.fsb.org/work-of-the-fsb/market-and-institutional-resilience/post-2008-financial-crisis-reforms/legalentityidentifier/) - Financial Stability Board
+- **Ontology2** : [legalentityidentifier.info as a Real Semantics Application](https://ontology2.com/the-book/legalentityidentifier-info.html) - Application RDF
+
+**Approches suggérées**
+- Télécharger et parser les données GLEIF (format XML ou JSON)
+- Construire un graphe de connaissances avec les relations de propriété (parent/enfant)
+- Implémenter des algorithmes de détection de risque systémique (centralité, clusters)
+- Visualiser les chaînes de propriété et les expositions concentrées
+
+**Technologies pertinentes**
+- Python avec pandas pour le parsing des données GLEIF
+- Neo4j ou NetworkX pour la construction et l'analyse du graphe
+- Algorithmes de graphe (PageRank, Betweenness) pour l'analyse de risque
+- Gephi ou Cytoscape pour la visualisation des réseaux de propriété
+
+---
+
+### 63. Planification d'investissement par programmation dynamique stochastique
+
+**Description du problème et contexte**
+La planification financière sur plusieurs horizons (épargne retraite, objectifs de vie) sous incertitude des rendements se modélise comme un problème de programmation dynamique stochastique. L'objectif est de déterminer la politique optimale d'allocation d'actifs qui maximise l'utilité espérée tout en respectant des contraintes de liquidité et de risque.
+
+**Références multiples**
+- **ResearchGate** : [Optimal Rebalancing Strategy Using Dynamic Programming for Institutional Portfolios](https://www.researchgate.net/publication/228224355_Optimal_Rebalancing_Strategy_Using_Dynamic_Programming_for_Institutional_Portfolios)
+- **CFA Institute** : [Principles of Asset Allocation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2025/principles-asset-allocation) - 2025
+- **arXiv** : [Practical Portfolio Optimization with Metaheuristics](https://arxiv.org/pdf/2503.15965) - 2025
+- **Vanguard Research** : [The rebalancing edge: Optimizing threshold-based strategies](https://corporate.vanguard.com/content/dam/corp/research/pdf/the_rebalancing_edge_optimizing_target_date_fund_rebalancing_through_threshold_based_strategies.pdf) - 2024
+
+**Approches suggérées**
+- Formuler le problème comme MDP avec états (richesse, âge) et actions (allocations)
+- Discrétiser l'espace d'états et implémenter l'équation de Bellman par backward induction
+- Intégrer des contraintes réalistes (liquidité minimale, contributions périodiques)
+- Comparer avec des heuristiques simples (glide path, constant mix)
+
+**Technologies pertinentes**
+- Python avec NumPy pour la programmation dynamique
+- SciPy pour l'optimisation et les simulations Monte Carlo
+- Gymnasium (OpenAI Gym) pour une formulation RL alternative
+- Plotly pour la visualisation des politiques optimales et frontières
+
+---
+
+### 64. Robo-advisor : optimisation de portefeuille goal-based
+
+**Description du problème et contexte**
+Les robo-advisors modernes gèrent plusieurs objectifs simultanément (retraite, achat immobilier, études des enfants) avec des horizons et tolérances au risque différents. Ce problème d'optimisation sous contraintes multiples se prête à la programmation par contraintes, permettant d'intégrer des règles métier complexes et des préférences utilisateur.
+
+**Références multiples**
+- **arXiv** : [Robo-Advisors Beyond Automation: Principles and Roadmap for AI-Driven Financial Planning](https://arxiv.org/html/2509.09922v1) - 2025
+- **InvestSuite** : [Goal-Based Personalized Investing](https://www.investsuite.com/insights/blogs/what-are-the-best-robo-advisor-apps-for-goal-based-personalized-investing-key-features-and-considerations)
+- **Manning** : [Build a Robo-Advisor with Python (From Scratch)](https://www.manning.com/books/build-a-robo-advisor-with-python-from-scratch) - Livre pratique
+
+**Approches suggérées**
+- Modéliser les objectifs comme contraintes (montant cible, horizon, probabilité de succès)
+- Implémenter une allocation optimale multi-objectifs avec contraintes de risque
+- Utiliser des simulations Monte Carlo pour estimer les probabilités de succès
+- Développer une interface de conseil personnalisé avec visualisation des scénarios
+
+**Technologies pertinentes**
+- Python avec cvxpy pour l'optimisation convexe sous contraintes
+- OR-Tools pour la formulation CSP des contraintes métier
+- yfinance pour les données de marché historiques
+- Streamlit pour l'interface utilisateur interactive
+
+---
+
+### 65. Ordonnancement de projets avec contraintes financières (FB-RCPSP)
+
+**Description du problème et contexte**
+Le Finance-Based Resource-Constrained Project Scheduling Problem (FB-RCPSP) étend le problème classique RCPSP en intégrant des contraintes de trésorerie : le cash disponible ne doit jamais être négatif, les paiements par jalons affectent la planification, et l'objectif peut inclure la maximisation du NPV ou la minimisation des coûts de financement.
+
+**Références multiples**
+- **ScienceDirect** : [A bi-objective optimization for finance-based and resource-constrained robust project scheduling](https://www.sciencedirect.com/science/article/abs/pii/S0957417423011259) - Expert Systems 2023
+- **MDPI** : [Financial Optimization of the Resource-Constrained Project Scheduling Problem with Milestones Payments](https://www.mdpi.com/2076-3417/11/2/661) - Applied Sciences
+- **Academia** : [Finance-based Scheduling for Cash-flow Management of Maintenance Portfolios](https://www.academia.edu/128129385/Finance_based_Scheduling_for_Cash_flow_Management_of_Maintenance_Portfolios_Multi_objective_Optimization_Approach)
+
+**Approches suggérées**
+- Modéliser les activités avec leurs ressources, durées et impacts cash-flow
+- Implémenter les contraintes de précédence, ressources et trésorerie
+- Développer une approche bi-objectif (makespan vs NPV) avec front de Pareto
+- Tester sur des instances de projets avec paiements par jalons
+
+**Technologies pertinentes**
+- Python avec OR-Tools CP-SAT pour le scheduling sous contraintes
+- pymoo pour l'optimisation multi-objectifs
+- Pandas pour la gestion des cash-flows et calendriers de paiement
+- Gantt charts avec Plotly pour la visualisation des plannings
+
+---
+
+## 🔢 Sujets Mathématiques Formels avec Lean
+
+Les sujets suivants utilisent le prouveur de théorèmes Lean et sa bibliothèque mathématique Mathlib pour formaliser des résultats mathématiques. Ces sujets conviennent particulièrement aux étudiants ayant un goût pour les mathématiques rigoureuses et la logique formelle.
+
+---
+
+### 66. Introduction à la preuve formelle : Natural Number Game
+
+**Description du problème et contexte**
+Le Natural Number Game est un jeu éducatif interactif qui enseigne les bases de la preuve formelle en Lean en construisant la théorie des nombres naturels à partir des axiomes de Peano. C'est une excellente introduction à la formalisation mathématique, accessible sans prérequis en programmation.
+
+**Références multiples**
+- **Natural Number Game** : [adam.math.hhu.de/#/g/leanprover-community/NNG4](https://adam.math.hhu.de/#/g/leanprover-community/NNG4) - Jeu en ligne Lean 4
+- **GitHub NNG4** : [github.com/leanprover-community/NNG4](https://github.com/leanprover-community/NNG4) - Code source
+- **Learning Lean 4** : [leanprover-community.github.io/learn.html](https://leanprover-community.github.io/learn.html) - Ressources d'apprentissage
+- **Imperial College** : [Natural Number Game FAQ](https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/FAQ.html) - Questions fréquentes
+
+**Approches suggérées**
+- Compléter les niveaux du Natural Number Game (addition, multiplication, puissances)
+- Documenter les tactiques Lean utilisées et leur correspondance avec les preuves papier
+- Étendre le jeu avec de nouveaux niveaux (divisibilité, nombres premiers)
+- Créer un tutoriel en français pour accompagner le jeu
+
+**Technologies pertinentes**
+- Lean 4 avec environnement web ou VS Code
+- Mathlib4 pour les extensions avancées
+- Markdown/Jupyter pour la documentation des preuves
+- GitHub Pages pour publier le tutoriel
+
+---
+
+### 67. Formalisation de théorèmes d'algèbre en Lean
+
+**Description du problème et contexte**
+Mathlib contient une vaste bibliothèque d'algèbre abstraite (groupes, anneaux, corps, modules). Ce projet propose de formaliser des théorèmes classiques d'algèbre de niveau L3/M1 en Lean, contribuant potentiellement à Mathlib et développant une compréhension profonde des structures algébriques.
+
+**Références multiples**
+- **Mathematics in Lean** : [leanprover-community.github.io/mathematics_in_lean](https://leanprover-community.github.io/mathematics_in_lean/) - Tutoriel officiel
+- **Mathlib Overview** : [leanprover-community.github.io/mathlib-overview.html](https://leanprover-community.github.io/mathlib-overview.html) - Couverture mathématique
+- **ProofLab** : [University of Regensburg - Formalising Mathematics in Lean](https://loeh.app.uni-regensburg.de/teaching/prooflab_ws2122/lecture_notes.pdf) - Notes de cours
+- **Xena Project** : [xenaproject.wordpress.com](https://xenaproject.wordpress.com/) - Mathématiciens apprenant Lean
+
+**Approches suggérées**
+- Choisir un théorème classique (Lagrange, Sylow, structure des groupes abéliens finis)
+- Étudier les définitions et lemmes disponibles dans Mathlib
+- Formaliser la preuve en Lean avec documentation des étapes
+- Soumettre la contribution à Mathlib si le résultat est nouveau
+
+**Technologies pertinentes**
+- Lean 4 avec Mathlib4 pour l'infrastructure algébrique
+- VS Code avec l'extension Lean pour le développement interactif
+- Zulip (Lean community) pour l'aide et les revues de code
+- LaTeX pour la documentation parallèle des preuves
+
+---
+
+### 68. Formalisation de la théorie de la mesure et probabilités
+
+**Description du problème et contexte**
+Mathlib dispose d'une formalisation substantielle de la théorie de la mesure et des probabilités, servant de fondation pour des travaux avancés comme la formalisation du mouvement brownien. Ce projet explore cette formalisation en prouvant des théorèmes classiques de probabilités.
+
+**Références multiples**
+- **Mathlib Probability** : [Basic probability in Mathlib](https://leanprover-community.github.io/blog/posts/basic-probability-in-mathlib/) - Blog post
+- **Brownian Motion** : [Formalization of Brownian motion in Lean](https://arxiv.org/html/2511.20118v1) - arXiv 2025
+- **GitHub** : [github.com/RemyDegenne/brownian-motion](https://github.com/RemyDegenne/brownian-motion) - Projet de recherche
+- **Ionescu-Tulcea** : [A Formalization of the Ionescu-Tulcea Theorem in mathlib](https://hal.science/hal-05123438v3/document) - HAL
+
+**Approches suggérées**
+- Étudier la hiérarchie MeasureTheory et ProbabilityTheory dans Mathlib
+- Formaliser un théorème classique (loi forte des grands nombres, TCL si non présent)
+- Explorer les processus stochastiques formalisés (martingales, temps d'arrêt)
+- Documenter les patterns de preuve pour les arguments de convergence
+
+**Technologies pertinentes**
+- Lean 4 avec Mathlib4.MeasureTheory et Mathlib4.Probability
+- VS Code pour le développement interactif
+- LaTeX pour la correspondance avec les preuves mathématiques standard
+- Jupyter avec lean4jupyter pour les présentations interactives
+
+---
+
+### 69. Formalisation de théorèmes de théorie des jeux
+
+**Description du problème et contexte**
+La théorie des jeux fournit le fondement mathématique de nombreuses applications en économie et finance (équilibres de Nash, mécanismes d'enchères, négociation). Formaliser ces résultats en Lean permet de vérifier rigoureusement les preuves et d'explorer les connexions avec l'optimisation et la logique.
+
+**Références multiples**
+- **Mathlib Combinatorics** : [leanprover-community.github.io/mathlib-overview.html](https://leanprover-community.github.io/mathlib-overview.html) - Section Game Theory
+- **Lean Projects** : [leanprover-community.github.io/lean_projects.html](https://leanprover-community.github.io/lean_projects.html) - Projets communautaires
+- **Combinatorial Game Theory** : Disponible dans Mathlib (jeux de Nim, surreal numbers)
+
+**Approches suggérées**
+- Étudier les jeux combinatoires déjà formalisés dans Mathlib
+- Formaliser l'existence d'équilibres de Nash en stratégies mixtes (point fixe)
+- Prouver des résultats sur les jeux à somme nulle (minimax)
+- Explorer les connexions avec l'optimisation convexe formalisée
+
+**Technologies pertinentes**
+- Lean 4 avec Mathlib4 pour les structures mathématiques
+- Analysis et Topology dans Mathlib pour les théorèmes de point fixe
+- VS Code pour le développement
+- Documentation bilingue Lean/mathématiques
+
+---
+
+### 70. Le Matrix Cookbook en Lean : algèbre linéaire formalisée
+
+**Description du problème et contexte**
+Le Matrix Cookbook est une référence très utilisée en machine learning et statistiques, compilant des centaines d'identités matricielles. Un projet communautaire vise à formaliser ces résultats en Lean, créant un index vers Mathlib pour les résultats d'algèbre linéaire.
+
+**Références multiples**
+- **Matrix Cookbook Project** : [Lean projects - Matrix Cookbook](https://leanprover-community.github.io/lean_projects.html) - Projet communautaire
+- **Original Cookbook** : [The Matrix Cookbook](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf) - PDF référence
+- **Mathlib Linear Algebra** : Couverture extensive des matrices, déterminants, valeurs propres
+
+**Approches suggérées**
+- Choisir une section du Matrix Cookbook (dérivées matricielles, décompositions)
+- Identifier les lemmes correspondants dans Mathlib ou les prouver
+- Créer un index navigable reliant les formules aux preuves Lean
+- Contribuer les résultats manquants à Mathlib
+
+**Technologies pertinentes**
+- Lean 4 avec Mathlib4.LinearAlgebra et Mathlib4.Analysis.Matrix
+- VS Code pour le développement
+- Documentation web pour l'index navigable
+- CI/CD pour vérifier la compilation avec les nouvelles versions de Mathlib
+
+---
+
+### 71. Formalisation de résultats de combinatoire
+
+**Description du problème et contexte**
+Mathlib contient une riche bibliothèque de combinatoire incluant les nombres de Catalan, Bell, les familles d'ensembles (Sperner, Kruskal-Katona), et la théorie de Ramsey. Ce projet propose d'explorer et d'étendre cette formalisation avec des résultats de combinatoire énumérative ou extrémale.
+
+**Références multiples**
+- **Mathlib Combinatorics** : [leanprover-community.github.io/mathlib-overview.html](https://leanprover-community.github.io/mathlib-overview.html) - Section Combinatorics
+- **Erdős problems** : Collection de problèmes ouverts adaptés à la formalisation
+- **PFR Conjecture** : Polynomial Freiman-Ruzsa conjecture formalisée en 3 semaines
+
+**Approches suggérées**
+- Explorer les théorèmes de combinatoire disponibles dans Mathlib
+- Choisir un résultat classique non encore formalisé (identité combinatoire, bijection)
+- Formaliser la preuve avec attention aux arguments de comptage
+- Documenter les techniques de preuve combinatoire en Lean
+
+**Technologies pertinentes**
+- Lean 4 avec Mathlib4.Combinatorics
+- BigOperators pour les sommes et produits finis
+- Finset et Fintype pour les ensembles finis
+- GitHub pour la contribution à Mathlib
+
