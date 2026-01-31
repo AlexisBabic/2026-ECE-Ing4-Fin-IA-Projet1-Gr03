@@ -12,7 +12,7 @@ from src.graph_coloring import create_sample_graph, solve_graph_coloring
 class TestGraphColoring(unittest.TestCase):
 
     def test_sample_graph_creation(self):
-        """Test that the sample graph is created correctly."""
+        """Vérifie que le graphe exemple est correctement instancié."""
         G = create_sample_graph()
         self.assertEqual(len(G.nodes()), 6)  # 5 + center
         self.assertEqual(len(G.edges()), 10)  # pentagon + 5 to center
@@ -33,3 +33,4 @@ class TestGraphColoring(unittest.TestCase):
 if __name__ == '__main__':
 
     unittest.main()
+
