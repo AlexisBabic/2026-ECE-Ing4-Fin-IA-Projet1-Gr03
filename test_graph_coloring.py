@@ -1,5 +1,8 @@
 """
-Tests for graph coloring implementation.
+Suite de tests unitaires pour le projet de coloration de graphe.
+Objectifs :
+1. Vérifier l'intégrité de la structure de données (Graphe).
+2. Valider l'algorithme de coloration (respect des contraintes de couleurs et d'adjacence).
 """
 
 import unittest
@@ -28,4 +31,5 @@ class TestGraphColoring(unittest.TestCase):
 
 
 if __name__ == '__main__':
+
     unittest.main()
