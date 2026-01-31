@@ -1,0 +1,31 @@
+"""
+Tests for graph coloring implementation.
+"""
+
+import unittest
+from src.graph_coloring import create_sample_graph, solve_graph_coloring
+
+
+class TestGraphColoring(unittest.TestCase):
+
+    def test_sample_graph_creation(self):
+        """Test that the sample graph is created correctly."""
+        G = create_sample_graph()
+        self.assertEqual(len(G.nodes()), 6)  # 5 + center
+        self.assertEqual(len(G.edges()), 10)  # pentagon + 5 to center
+
+    def test_coloring_solution(self):
+        """Test that a valid coloring is found."""
+        G = create_sample_graph()
+        coloring, num_colors = solve_graph_coloring(G, max_colors=4)
+        self.assertIsNotNone(coloring)
+        self.assertGreaterEqual(num_colors, 1)
+        self.assertLessEqual(num_colors, 4)
+
+        # Check that adjacent nodes have different colors
+        for u, v in G.edges():
+            self.assertNotEqual(coloring[u], coloring[v])
+
+
+if __name__ == '__main__':
+    unittest.main()
