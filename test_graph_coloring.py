@@ -25,7 +25,7 @@ class TestGraphColoring(unittest.TestCase):
         self.assertGreaterEqual(num_colors, 1)
         self.assertLessEqual(num_colors, 4)
 
-        # Check that adjacent nodes have different colors
+        # Vérifie qu'aucun nœud adjacent ne partage la même couleur.
         for u, v in G.edges():
             self.assertNotEqual(coloring[u], coloring[v])
 
@@ -33,5 +33,6 @@ class TestGraphColoring(unittest.TestCase):
 if __name__ == '__main__':
 
     unittest.main()
+
 
 
