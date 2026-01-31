@@ -18,7 +18,7 @@ class TestGraphColoring(unittest.TestCase):
         self.assertEqual(len(G.edges()), 10)  # pentagon + 5 to center
 
     def test_coloring_solution(self):
-        """Test that a valid coloring is found."""
+        """Vérifie que la solution retournée respecte toutes les règles de coloration de graphe."""
         G = create_sample_graph()
         coloring, num_colors = solve_graph_coloring(G, max_colors=4)
         self.assertIsNotNone(coloring)
@@ -33,4 +33,5 @@ class TestGraphColoring(unittest.TestCase):
 if __name__ == '__main__':
 
     unittest.main()
+
 
